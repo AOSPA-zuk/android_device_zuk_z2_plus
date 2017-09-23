@@ -229,6 +229,18 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine.conf
 
+# Subsystem silent restart
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.ssr.restart_level=venus,AR6320,slpi,modem,adsp
+
+# Offline charging
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.enable_boot_charger_mode=1 
+
+# FlipFlap
+PRODUCT_PACKAGES += \
+    FlipFlap
+
 # Wifi
 PRODUCT_PACKAGES += \
     ipacm \
