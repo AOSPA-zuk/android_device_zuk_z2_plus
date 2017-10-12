@@ -366,7 +366,7 @@
     <integer name="config_screenBrightnessDoze">17</integer>
 
     <!-- Whether device supports double tap to wake -->
-    <bool name="config_supportDoubleTapWake">true</bool>
+  <!--  <bool name="config_supportDoubleTapWake">true</bool> -->
 
     <!-- Configure mobile tcp buffer sizes in the form:
          rat-name:rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max
@@ -468,9 +468,9 @@
     <!-- Default value for proximity check on screen wake
          NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)
     -->
-    <bool name="config_proximityCheckOnWake">true</bool>
-    <integer name="config_proximityCheckTimeout">3000</integer>
-    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
+    <!-- <bool name="config_proximityCheckOnWake">true</bool> -->
+  <!--  <integer name="config_proximityCheckTimeout">3000</integer>
+    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool> -->
 
     <!-- Whether notify fingerprint client of successful cancelled authentication -->
     <bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>

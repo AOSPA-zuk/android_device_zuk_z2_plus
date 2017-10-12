@@ -28,6 +28,7 @@ import init.qcom.power.rc
 import init.qcom.usb.rc
 import init.qcom.bt.sh
 import init.target.rc
+import init.zygote64_32.rc
 
 on early-init
     mkdir /firmware 0771 system system
