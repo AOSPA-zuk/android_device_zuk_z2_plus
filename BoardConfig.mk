@@ -59,6 +59,15 @@ TARGET_KERNEL_SOURCE := kernel/zuk/msm8996
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_APPEND_DTB := true
 
+
+# Use Snapdragon LLVM, if available
+LLVM_PREBUILTS_PATH := $(realpath $(TOP))/prebuilts/clang/linux-x86/arm-multiarch-linux-android-llvm-3.8/bin
+LLVM_RTLIB_PATH := $(realpath $(TOP))/prebuilts/clang/linux-x86/arm-multiarch-linux-android-llvm-3.8/lib/clang/3.8.2/lib/linux
+CLANG := $(LLVM_PREBUILTS_PATH)/clang
+CLANG_CXX := $(LLVM_PREBUILTS_PATH)/clang++
+LLVM_AS := $(LLVM_PREBUILTS_PATH)/llvm-as
+LLVM_LINK := $(LLVM_PREBUILTS_PATH)/llvm-link
+
 # Platform
 TARGET_BOARD_PLATFORM := msm8996
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
@@ -77,6 +86,11 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_BTNV := true
 
+# Bootanimaion
+TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+
 # Camera
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 TARGET_CAMERASERVICE_CLOSES_NATIVE_HANDLES := true
@@ -92,13 +106,17 @@ BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
 TARGET_LDPRELOAD := libNimsWrap.so
 BOARD_USES_QCNE := true
 
-# Dex
+# Dexpreopt
+WITH_DEXPREOPT := true
 ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    WITH_DEXPREOPT ?= true
-  endif
+ifneq ($(TARGET_BUILD_VARIANT),eng)
+WITH_DEXPREOPT := true
+WITH_DEXPREOPT_DEBUG_INFO := false
+USE_DEX2OAT_DEBUG := false
+DONT_DEXPREOPT_PREBUILTS := true
+WITH_DEXPREOPT_PIC := true
 endif
-WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
+endif
 
 # Display
 MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
